@@ -1,6 +1,11 @@
 {
-  "packages": ["config/*", "examples/*", "packages/*", "tools/*"],
+  "packages": [
+    "config/*",
+    "examples/*",
+    "packages/*",
+    "tools/*"
+  ],
   "useWorkspaces": true,
   "npmClient": "yarn",
-  "version": "0.0.0"
+  "version": "1.0.0"
 }

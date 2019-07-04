@@ -1,6 +1,6 @@
 {
   "name": "@ngineer/config-tslint",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "extendable tslint configs",
   "homepage": "https://pixelass.github.io/ngineer",
   "bugs": {
@@ -18,8 +18,8 @@
   ],
   "main": "tslint.js",
   "dependencies": {
-    "@ngineer/config-prettier": "0.1.0",
-    "@ngineer/config-typescript": "0.1.0",
+    "@ngineer/config-prettier": "^1.0.0",
+    "@ngineer/config-typescript": "^1.0.0",
     "tslint": "5.18.0",
     "tslint-config-prettier": "1.18.0",
     "tslint-eslint-rules": "5.4.0",

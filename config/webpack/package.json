@@ -1,6 +1,6 @@
 {
   "name": "@ngineer/config-webpack",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "extendable webpack configs",
   "homepage": "https://pixelass.github.io/ngineer",
   "bugs": {
@@ -21,10 +21,10 @@
   "dependencies": {
     "@babel/core": "7.4.5",
     "@hot-loader/react-dom": "16.8.6",
-    "@ngineer/config": "0.1.0",
-    "@ngineer/config-babel": "0.1.0",
-    "@ngineer/config-postcss": "0.1.0",
-    "@ngineer/config-typescript": "0.1.0",
+    "@ngineer/config": "^1.0.0",
+    "@ngineer/config-babel": "^1.0.0",
+    "@ngineer/config-postcss": "^1.0.0",
+    "@ngineer/config-typescript": "^1.0.0",
     "@types/webpack": "4.4.34",
     "@types/webpack-dev-server": "3.1.6",
     "@types/webpack-merge": "4.1.5",

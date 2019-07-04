@@ -1,6 +1,6 @@
 {
   "name": "@ngineer/config-stylelint",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "extendable stylelint configs",
   "homepage": "https://pixelass.github.io/ngineer",
   "bugs": {

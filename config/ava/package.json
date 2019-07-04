@@ -1,6 +1,6 @@
 {
   "name": "@ngineer/config-ava",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "extendable ava configs",
   "homepage": "https://pixelass.github.io/ngineer",
   "bugs": {
@@ -18,8 +18,8 @@
   ],
   "main": "typescript.js",
   "dependencies": {
-    "@ngineer/config-babel": "0.1.0",
-    "@ngineer/config-typescript": "0.1.0",
+    "@ngineer/config-babel": "^1.0.0",
+    "@ngineer/config-typescript": "^1.0.0",
     "ava": "2.1.0",
     "ts-node": "8.3.0",
     "typescript": "3.5.2"

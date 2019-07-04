@@ -1,0 +1,47 @@
+{
+  "name": "@examples/button",
+  "version": "0.1.0",
+  "private": true,
+  "license": "MIT",
+  "author": "Gregor Adams <greg@pixelass.com>",
+  "files": [
+    "dist",
+    "index.js",
+    "index.d.ts"
+  ],
+  "main": "index.js",
+  "module": "dist/esm/index.js",
+  "types": "index.d.ts",
+  "directories": {
+    "lib": "dist",
+    "doc": "doc",
+    "test": "test"
+  },
+  "scripts": {
+    "build": "ngineer -rp",
+    "clean": "ngineer clean",
+    "format": "ngineer format 'src/**/*.{ts,tsx}' '**/*.md'",
+    "lint": "ngineer lint 'src/**/*.{ts,tsx}'",
+    "prebuild": "yarn clean",
+    "test": "ngineer test",
+    "watch": "ngineer -rw"
+  },
+  "browserslist": [
+    "last 2 chrome versions",
+    "last 2 firefox versions",
+    "last 2 safari versions",
+    "last 2 ios versions"
+  ],
+  "dependencies": {
+    "@types/react": "16.8.23",
+    "@types/styled-components": "4.1.16"
+  },
+  "devDependencies": {
+    "@ngineer/cli": "0.1.0",
+    "@ngineer/testing-utils": "0.1.0"
+  },
+  "peerDependencies": {
+    "react": ">=16",
+    "styled-components": ">=4"
+  }
+}

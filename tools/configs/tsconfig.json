@@ -1,0 +1,8 @@
+{
+  "extends": "@ngineer/config-typescript/react",
+  "compilerOptions": {
+    "rootDir": "",
+    "outDir": "lib",
+    "target": "es5"
+  }
+}

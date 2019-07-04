@@ -1,0 +1,54 @@
+{
+  "name": "@ngineer/cli",
+  "version": "0.1.0",
+  "description": "CLI command for ngineer",
+  "homepage": "https://pixelass.github.io/ngineer",
+  "bugs": {
+    "url": "https://github.com/pixelass/ngineer/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pixelass/ngineer.git"
+  },
+  "license": "MIT",
+  "author": "Gregor Adams <greg@pixelass.com>",
+  "files": [
+    "dist",
+    "ngineer.js"
+  ],
+  "bin": {
+    "ngineer": "ngineer.js"
+  },
+  "directories": {
+    "lib": "dist",
+    "doc": "doc",
+    "test": "test"
+  },
+  "scripts": {
+    "build": "rollup -c",
+    "clean": "rimraf .rpt2_cache dist",
+    "prebuild": "yarn clean",
+    "watch": "rollup -cw"
+  },
+  "dependencies": {
+    "@ngineer/configs": "0.1.0",
+    "@ngineer/server": "0.1.0",
+    "@types/meow": "5.0.0",
+    "@types/mkdirp": "0.5.2",
+    "concurrently": "4.1.0",
+    "cosmiconfig": "5.2.1",
+    "cross-env": "5.2.0",
+    "execa": "1.0.0",
+    "globby": "9.2.0",
+    "meow": "5.0.0",
+    "mkdirp": "0.5.1",
+    "rimraf": "2.6.3"
+  },
+  "engines": {
+    "node": ">=8",
+    "npm": ">=6"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

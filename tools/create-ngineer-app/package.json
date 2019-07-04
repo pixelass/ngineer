@@ -1,0 +1,36 @@
+{
+  "name": "create-ngineer-app",
+  "version": "0.1.0",
+  "description": "create ngineer app",
+  "homepage": "https://pixelass.github.io/ngineer",
+  "bugs": {
+    "url": "https://github.com/pixelass/ngineer/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pixelass/ngineer.git"
+  },
+  "license": "MIT",
+  "author": "Gregor Adams <greg@pixelass.com>",
+  "files": [
+    "bin.js",
+    "index.js"
+  ],
+  "main": "index.js",
+  "bin": "bin.js",
+  "dependencies": {
+    "execa": "2.0.2",
+    "github-username": "5.0.1",
+    "meow": "5.0.0",
+    "mkdirp": "0.5.1",
+    "ora": "3.4.0",
+    "pify": "4.0.1"
+  },
+  "engines": {
+    "node": ">=8",
+    "npm": ">=6"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

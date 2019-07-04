@@ -1,0 +1,38 @@
+{
+  "name": "@ngineer/config-rollup",
+  "version": "0.1.0",
+  "description": "extendable rollup configs",
+  "homepage": "https://pixelass.github.io/ngineer",
+  "bugs": {
+    "url": "https://github.com/pixelass/ngineer/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pixelass/ngineer.git"
+  },
+  "license": "MIT",
+  "author": "Gregor Adams <greg@pixelass.com>",
+  "files": [
+    "utils/*",
+    "config/*",
+    "esnext.js",
+    "typescript.js"
+  ],
+  "main": "esnext.js",
+  "dependencies": {
+    "@babel/core": "7.4.5",
+    "rollup": "1.16.6",
+    "rollup-plugin-babel": "4.3.3",
+    "rollup-plugin-json": "4.0.0",
+    "rollup-plugin-resolve2": "1.0.0",
+    "rollup-plugin-typescript2": "0.21.2",
+    "typescript": "3.5.2"
+  },
+  "engines": {
+    "node": ">=8",
+    "npm": ">=6"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

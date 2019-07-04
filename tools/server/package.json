@@ -1,0 +1,67 @@
+{
+  "name": "@ngineer/server",
+  "version": "0.1.0",
+  "homepage": "https://pixelass.github.io/ngineer",
+  "bugs": {
+    "url": "https://github.com/pixelass/ngineer/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pixelass/ngineer.git"
+  },
+  "license": "MIT",
+  "author": "Gregor Adams <greg@pixelass.com>",
+  "files": [
+    "dist",
+    "index.js",
+    "index.d.ts"
+  ],
+  "main": "index.js",
+  "module": "dist/esm/index.js",
+  "types": "index.d.ts",
+  "directories": {
+    "lib": "dist",
+    "doc": "doc",
+    "test": "test"
+  },
+  "scripts": {
+    "build": "ngineer -rp",
+    "clean": "ngineer clean",
+    "format": "ngineer format 'src/**/*.{ts,tsx}' '**/*.md'",
+    "lint": "ngineer lint 'src/**/*.{ts,tsx}'",
+    "prebuild": "yarn clean",
+    "watch": "ngineer -rw"
+  },
+  "dependencies": {
+    "@ngineer/config": "0.1.0",
+    "@types/body-parser": "1.17.0",
+    "@types/express": "4.17.0",
+    "@types/react": "16.8.20",
+    "@types/react-dom": "16.8.4",
+    "@types/react-router": "5.0.2",
+    "@types/react-router-dom": "4.3.4",
+    "body-parser": "1.19.0",
+    "cosmiconfig": "5.2.1",
+    "express": "4.17.1",
+    "html-react-parser": "0.7.1",
+    "nodemon": "1.19.1",
+    "pem": "1.14.2"
+  },
+  "devDependencies": {
+    "@ngineer/cli": "0.1.0",
+    "@ngineer/testing-utils": "0.1.0",
+    "react": ">=16",
+    "react-dom": ">=16",
+    "react-router": ">=5",
+    "react-router-dom": ">=5"
+  },
+  "peerDependencies": {
+    "react": ">=16",
+    "react-dom": ">=16",
+    "react-router": ">=5",
+    "react-router-dom": ">=5"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

@@ -1,0 +1,55 @@
+{
+  "name": "@ngineer/config-babel",
+  "version": "0.1.0",
+  "description": "extendable babel configs",
+  "homepage": "https://pixelass.github.io/ngineer",
+  "bugs": {
+    "url": "https://github.com/pixelass/ngineer/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pixelass/ngineer.git"
+  },
+  "license": "MIT",
+  "author": "Gregor Adams <greg@pixelass.com>",
+  "files": [
+    "config/*",
+    "esnext.js",
+    "react.js",
+    "styled-components.js",
+    "ts-react.js",
+    "ts-styled-components.js",
+    "typescript.js"
+  ],
+  "main": "esnext.js",
+  "dependencies": {
+    "@babel/cli": "7.4.4",
+    "@babel/core": "7.4.5",
+    "@babel/plugin-proposal-class-properties": "7.4.4",
+    "@babel/plugin-proposal-object-rest-spread": "7.4.4",
+    "@babel/preset-env": "7.4.5",
+    "@babel/preset-react": "7.0.0",
+    "@babel/preset-typescript": "7.3.3",
+    "@ngineer/config-typescript": "0.1.0",
+    "babel-plugin-styled-components": "1.10.6",
+    "babel-plugin-transform-inline-environment-variables": "0.4.3",
+    "react-hot-loader": "4.12.3"
+  },
+  "devDependencies": {
+    "react": ">=16",
+    "react-dom": ">=16",
+    "styled-components": ">=4"
+  },
+  "peerDependencies": {
+    "react": ">=16",
+    "react-dom": ">=16",
+    "styled-components": ">=4"
+  },
+  "engines": {
+    "node": ">=8",
+    "npm": ">=6"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

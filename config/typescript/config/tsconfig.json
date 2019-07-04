@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
+    "alwaysStrict": true,
+    "declaration": true,
+    "declarationMap": true,
+    "esModuleInterop": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "lib": ["dom", "es2015", "es2017", "es2018", "es6", "es7"],
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "newLine": "lf",
+    "resolveJsonModule": true,
+    "sourceMap": true,
+    "target": "es6"
+  }
+}

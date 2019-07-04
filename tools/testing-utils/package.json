@@ -1,0 +1,86 @@
+{
+  "name": "@ngineer/testing-utils",
+  "version": "0.1.0",
+  "description": "A collection testing tools and utilities",
+  "homepage": "https://pixelass.github.io/ngineer",
+  "bugs": {
+    "url": "https://github.com/pixelass/ngineer/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pixelass/ngineer.git"
+  },
+  "license": "MIT",
+  "author": "Gregor Adams <greg@pixelass.com>",
+  "files": [
+    "dist",
+    "index.js",
+    "index.d.ts"
+  ],
+  "main": "index.js",
+  "module": "dist/esm/index.js",
+  "types": "index.d.ts",
+  "directories": {
+    "lib": "dist",
+    "doc": "doc",
+    "test": "test"
+  },
+  "scripts": {
+    "build": "ngineer -rp",
+    "clean": "ngineer clean",
+    "format": "ngineer format 'src/**/*.{ts,tsx}' '**/*.md'",
+    "lint": "ngineer lint 'src/**/*.{ts,tsx}'",
+    "prebuild": "yarn clean",
+    "watch": "ngineer -rw"
+  },
+  "browserslist": [
+    "last 2 chrome versions",
+    "last 2 firefox versions",
+    "last 2 safari versions",
+    "last 2 ios versions"
+  ],
+  "dependencies": {
+    "@types/enzyme": "3.10.1",
+    "@types/enzyme-adapter-react-16": "1.0.5",
+    "@types/jsdom": "12.2.4",
+    "@types/react": "16.8.23",
+    "@types/react-dom": "16.8.4",
+    "@types/react-test-renderer": "16.8.2",
+    "@types/styled-components": "4.1.16",
+    "ava": "2.1.0",
+    "enzyme": "3.10.0",
+    "enzyme-adapter-react-16": "1.14.0",
+    "jasmine-core": "3.4.0",
+    "jsdom": "15.1.1",
+    "karma": "4.1.0",
+    "karma-chrome-launcher": "2.2.0",
+    "karma-firefox-launcher": "1.1.0",
+    "karma-ie-launcher": "1.0.0",
+    "karma-jasmine": "2.0.1",
+    "karma-safari-launcher": "1.0.0",
+    "karma-viewport": "1.0.4",
+    "karma-webpack": "4.0.2",
+    "nyc": "14.1.1",
+    "puppeteer": "1.18.1",
+    "react-test-renderer": "16.8.6",
+    "ts-lib": "0.0.5",
+    "webpack": "4.35.2"
+  },
+  "devDependencies": {
+    "react": ">=16",
+    "react-dom": ">=16",
+    "styled-components": ">=4"
+  },
+  "peerDependencies": {
+    "react": ">=16",
+    "react-dom": ">=16",
+    "styled-components": ">=4"
+  },
+  "engines": {
+    "node": ">=8",
+    "npm": ">=6"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

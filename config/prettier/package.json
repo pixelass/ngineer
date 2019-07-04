@@ -1,0 +1,30 @@
+{
+  "name": "@ngineer/config-prettier",
+  "version": "0.1.0",
+  "description": "sharable prettier configs",
+  "homepage": "https://pixelass.github.io/ngineer",
+  "bugs": {
+    "url": "https://github.com/pixelass/ngineer/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pixelass/ngineer.git"
+  },
+  "license": "MIT",
+  "author": "Gregor Adams <greg@pixelass.com>",
+  "files": [
+    "config/*",
+    "generic.js"
+  ],
+  "main": "generic.js",
+  "dependencies": {
+    "prettier": "1.18.2"
+  },
+  "engines": {
+    "node": ">=8",
+    "npm": ">=6"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

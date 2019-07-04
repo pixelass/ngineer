@@ -1,0 +1,63 @@
+{
+  "name": "@ngineer/config-webpack",
+  "version": "0.1.0",
+  "description": "extendable webpack configs",
+  "homepage": "https://pixelass.github.io/ngineer",
+  "bugs": {
+    "url": "https://github.com/pixelass/ngineer/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pixelass/ngineer.git"
+  },
+  "license": "MIT",
+  "author": "Gregor Adams <greg@pixelass.com>",
+  "files": [
+    "config/*",
+    "development.js",
+    "production.js"
+  ],
+  "main": "production.js",
+  "dependencies": {
+    "@babel/core": "7.4.5",
+    "@hot-loader/react-dom": "16.8.6",
+    "@ngineer/config": "0.1.0",
+    "@ngineer/config-babel": "0.1.0",
+    "@ngineer/config-postcss": "0.1.0",
+    "@ngineer/config-typescript": "0.1.0",
+    "@types/webpack": "4.4.34",
+    "@types/webpack-dev-server": "3.1.6",
+    "@types/webpack-merge": "4.1.5",
+    "babel-loader": "8.0.6",
+    "copy-webpack-plugin": "5.0.3",
+    "cosmiconfig": "5.2.1",
+    "css-loader": "3.0.0",
+    "globby": "10.0.0",
+    "html-webpack-plugin": "4.0.0-beta.5",
+    "less": "3.9.0",
+    "less-loader": "5.0.0",
+    "mini-css-extract-plugin": "0.7.0",
+    "node-sass": "4.12.0",
+    "postcss-loader": "3.0.0",
+    "sass-loader": "7.1.0",
+    "style-loader": "0.23.1",
+    "uglifyjs-webpack-plugin": "2.1.3",
+    "webpack": "4.35.2",
+    "webpack-cli": "3.3.5",
+    "webpack-dev-server": "3.7.2",
+    "webpack-merge": "4.2.1"
+  },
+  "devDependencies": {
+    "react": ">=16"
+  },
+  "peerDependencies": {
+    "react": ">=16"
+  },
+  "engines": {
+    "node": ">=8",
+    "npm": ">=6"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

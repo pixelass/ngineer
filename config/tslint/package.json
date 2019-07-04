@@ -1,0 +1,36 @@
+{
+  "name": "@ngineer/config-tslint",
+  "version": "0.1.0",
+  "description": "extendable tslint configs",
+  "homepage": "https://pixelass.github.io/ngineer",
+  "bugs": {
+    "url": "https://github.com/pixelass/ngineer/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pixelass/ngineer.git"
+  },
+  "license": "MIT",
+  "author": "Gregor Adams <greg@pixelass.com>",
+  "files": [
+    "config/*",
+    "tslint.js"
+  ],
+  "main": "tslint.js",
+  "dependencies": {
+    "@ngineer/config-prettier": "0.1.0",
+    "@ngineer/config-typescript": "0.1.0",
+    "tslint": "5.18.0",
+    "tslint-config-prettier": "1.18.0",
+    "tslint-eslint-rules": "5.4.0",
+    "tslint-react": "4.0.0",
+    "typescript": "3.5.2"
+  },
+  "engines": {
+    "node": ">=8",
+    "npm": ">=6"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

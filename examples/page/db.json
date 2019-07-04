@@ -1,0 +1,51 @@
+{
+  "items": [
+    {
+      "id": "item_0001",
+      "label": "Item 1"
+    },
+    {
+      "id": "item_0002",
+      "label": "Item 2"
+    },
+    {
+      "id": "item_0003",
+      "label": "Item 3"
+    },
+    {
+      "id": "item_0004",
+      "label": "Item 4"
+    },
+    {
+      "id": "item_0005",
+      "label": "Item 5"
+    },
+    {
+      "id": "item_0006",
+      "label": "Item 6"
+    }
+  ],
+  "entries": [],
+  "simpsons": [
+    {
+      "id": "homer_simpson",
+      "label": "Homer"
+    },
+    {
+      "id": "marge_simpson",
+      "label": "Marge"
+    },
+    {
+      "id": "bart_simpson",
+      "label": "Bart"
+    },
+    {
+      "id": "maggie_simpson",
+      "label": "Maggie"
+    },
+    {
+      "id": "lisa_simpson",
+      "label": "Lisa"
+    }
+  ]
+}

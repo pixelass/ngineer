@@ -1,0 +1,24 @@
+{
+  "name": "@examples/simple",
+  "version": "0.1.0",
+  "private": true,
+  "license": "MIT",
+  "author": "Gregor Adams <greg@pixelass.com>",
+  "files": [
+    "lib",
+    "index.js"
+  ],
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "build": "ngineer -p",
+    "clean": "ngineer clean",
+    "prebuild": "yarn clean",
+    "watch": "ngineer -w"
+  },
+  "devDependencies": {
+    "@ngineer/cli": "0.1.0"
+  }
+}

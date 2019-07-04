@@ -1,0 +1,50 @@
+{
+  "name": "@ngineer/monorepo",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Web development tools",
+  "homepage": "https://pixelass.github.io/ngineer",
+  "bugs": {
+    "url": "https://github.com/pixelass/ngineer/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pixelass/ngineer.git"
+  },
+  "license": "MIT",
+  "author": "Gregor Adams <greg@pixelass.com> (https://pixelass.com)",
+  "main": "index.js",
+  "workspaces": [
+    "config/*",
+    "examples/*",
+    "packages/*",
+    "tools/*"
+  ],
+  "scripts": {
+    "bootstrap": "lerna bootstrap",
+    "build": "lerna run build --ignore @ngineer/cli --stream",
+    "build:cli": "lerna run build --scope @ngineer/cli --stream",
+    "build:examples": "lerna run build --scope @examples/* --stream",
+    "build:packages": "lerna run build --scope @ngineer/* --ignore @ngineer/cli --stream",
+    "clean": "yarn lerna run clean --parallel",
+    "dev": "concurrently 'yarn watch' 'yarn dev:parallel'",
+    "dev:examples": "concurrently 'yarn watch --ignore @ngineer/*' 'yarn dev:parallel'",
+    "dev:parallel": "lerna run dev --parallel",
+    "format": "prettier '*.js' '**/*.{md,js,jsx,json,ts,tsx}' '!examples/**/*' '!**/{lib,dist}/**/*' --write",
+    "lint": "lerna run lint --parallel",
+    "ncu": "ncu -u; lerna exec 'ncu -u'",
+    "prebuild": "yarn build:cli && yarn build:packages",
+    "predev": "yarn prebuild",
+    "prerelease": "yarn test",
+    "pretest": "yarn build",
+    "release": "lerna publish --conventional-commits",
+    "test": "yarn lerna run test --parallel",
+    "watch": "lerna run watch --ignore @ngineer/cli --parallel"
+  },
+  "devDependencies": {
+    "concurrently": "4.1.1",
+    "lerna": "3.15.0",
+    "npm-check-updates": "3.1.13",
+    "prettier": "1.18.2"
+  }
+}

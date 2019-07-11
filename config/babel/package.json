@@ -1,6 +1,6 @@
 {
   "name": "@ngineer/config-babel",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "extendable babel configs",
   "homepage": "https://pixelass.github.io/ngineer",
   "bugs": {
@@ -30,7 +30,7 @@
     "@babel/preset-env": "7.5.4",
     "@babel/preset-react": "7.0.0",
     "@babel/preset-typescript": "7.3.3",
-    "@ngineer/config-typescript": "^1.0.0",
+    "@ngineer/config-typescript": "^1.1.0",
     "babel-plugin-styled-components": "1.10.6",
     "babel-plugin-transform-inline-environment-variables": "0.4.3",
     "react-hot-loader": "4.12.6"

@@ -1,6 +1,6 @@
 {
   "name": "@examples/simple",
-  "version": "0.1.0",
+  "version": "1.1.0",
   "private": true,
   "license": "MIT",
   "author": "Gregor Adams <greg@pixelass.com>",
@@ -19,6 +19,6 @@
     "watch": "ngineer -w"
   },
   "devDependencies": {
-    "@ngineer/cli": "1.0.0"
+    "@ngineer/cli": "^1.1.0"
   }
 }

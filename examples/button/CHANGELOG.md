@@ -9,11 +9,3 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 ### Features
 
 * **head:** added new package ([0ee0521](https://github.com/pixelass/ngineer/commit/0ee0521))
-
-
-
-
-
-# 1.0.0 (2019-07-04)
-
-**Note:** Version bump only for package @ngineer/config-postcss

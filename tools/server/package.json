@@ -48,10 +48,13 @@
     "pem": "1.14.2"
   },
   "devDependencies": {
+    "@ngineer/configs": "^1.1.0",
+    "cross-env": "5.2.0",
+    "rimraf": "2.6.3",
     "react": ">=16",
     "react-dom": ">=16",
     "react-router": ">=5",
-    "react-router-dom": ">=5"
+    "react-router-dom": ">=5",
   },
   "peerDependencies": {
     "react": ">=16",

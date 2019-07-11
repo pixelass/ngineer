@@ -81,23 +81,22 @@ export interface Attributes {
 	[k: string]: string;
 }
 export interface Values {
-	meta: Attributes[];
 	link: Attributes[];
+	meta: Attributes[];
 	title: React.ReactElement;
 }
 
 const INITIAL_VALUES: Values = {
-	meta: [],
 	link: [],
+	meta: [],
 	title: null
 };
 
 export class Head extends React.Component {
-	static tags: Values = INITIAL_VALUES;
-	static rewind() {
+	public static rewind() {
 		Head.tags = INITIAL_VALUES;
 	}
-	static renderStatic() {
+	public static renderStatic() {
 		const {meta, link, title} = Head.tags;
 		const metaComponents = (
 			<React.Fragment>
@@ -114,51 +113,59 @@ export class Head extends React.Component {
 			</React.Fragment>
 		);
 		return {
-			meta: {
-				toString: () => renderToStaticMarkup(metaComponents),
-				toComponents: () => metaComponents
-			},
 			link: {
-				toString: () => renderToStaticMarkup(linkComponents),
-				toComponents: () => linkComponents
+				toComponents: () => linkComponents,
+				toString: () => renderToStaticMarkup(linkComponents)
+			},
+			meta: {
+				toComponents: () => metaComponents,
+				toString: () => renderToStaticMarkup(metaComponents)
 			},
 			title: {
-				toString: () => renderToStaticMarkup(title),
-				toComponents: () => title
+				toComponents: () => title,
+				toString: () => renderToStaticMarkup(title)
 			}
 		};
 	}
 
-	title = React.Children.toArray(this.props.children).find(
+	private static tags: Values = INITIAL_VALUES;
+
+	private title = React.Children.toArray(this.props.children).find(
 		(x: React.ReactChild) => typeof x === "object" && x.type === "title"
 	);
 
-	meta = React.Children.toArray(this.props.children).filter(
+	private meta = React.Children.toArray(this.props.children).filter(
 		(x: React.ReactChild) => typeof x === "object" && x.type === "meta"
 	);
 
-	link = React.Children.toArray(this.props.children).filter(
+	private link = React.Children.toArray(this.props.children).filter(
 		(x: React.ReactChild) => typeof x === "object" && x.type === "link"
 	);
+
+	public constructor(props) {
+		super(props);
+		this.init();
+	}
 
 	public componentDidMount(): void {
 		Head.tags.meta.forEach(updateMeta);
 		Head.tags.link.forEach(updateLink);
 		document.title = Head.tags.title.props.children;
 	}
-	constructor(props) {
-		super(props);
+
+	public render() {
+		return null;
+	}
+
+	private init = () => {
 		Head.tags.title = this.title as React.ReactElement;
 		Head.tags.meta = [
 			...Head.tags.meta,
-			...this.meta.map(({props}: React.ReactComponentElement<any>) => props)
+			...this.meta.map(({props: metaProps}: React.ReactComponentElement<any>) => metaProps)
 		].reduce(reduceMeta, []);
 		Head.tags.link = [
 			...(Head.tags.link || []),
-			...this.link.map(({props}: React.ReactComponentElement<any>) => props)
+			...this.link.map(({props: linkProps}: React.ReactComponentElement<any>) => linkProps)
 		].reduce(reduceLink, []);
-	}
-	render() {
-		return null;
-	}
+	};
 }

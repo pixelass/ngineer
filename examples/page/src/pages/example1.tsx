@@ -1,4 +1,5 @@
 import {Button} from "@examples/button";
+import { Head } from "@ngineer/head";
 import React from "react";
 import styled from "styled-components";
 import {v4 as uuid} from "uuid";
@@ -7,7 +8,6 @@ import {Headline} from "../elements/headline";
 import {Spinner} from "../elements/spinner";
 import {Wrapper} from "../elements/wrapper";
 import {Data, DataFetcher} from "../services/data-fetcher";
-import { Head } from "@ngineer/head";
 
 const delayedFetcher = (delay: number = 500) => (url: string, options): Promise<any> =>
 	fetch(url, options).then(

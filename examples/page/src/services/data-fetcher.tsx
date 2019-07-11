@@ -35,48 +35,21 @@ export class DataFetcher extends React.Component<{url: string; as: string; fetch
 		};
 	}
 
+	public state: ContextModel = {
+		[this.props.as]: {
+			data: [],
+			fetch: this.fetch,
+			isFetching: false
+		}
+	};
+
 	private controller: AbortController;
 
 	private signal: AbortSignal;
 
-	private update = (prevState, nextState): ContextModel  => ({
-		[this.props.as]: {
-			...prevState[this.props.as],
-			...nextState
-		}
-	});
-
-	private fetch = (): void => {
-		this.setState(
-			prevState => this.update(prevState, {isFetching: true}),
-			() => {
-				this.props
-					.fetch(this.props.url, {signal: this.signal})
-					.then(data => {
-						this.setState(prevState =>
-							this.update(prevState, {data, isFetching: false})
-						);
-					})
-					.catch(err => {
-						if (err.name !== "AbortError") {
-							console.error(err);
-						}
-					});
-			}
-		);
-	};
-
-	public state: ContextModel = {
-		[this.props.as]: {
-			data: [],
-			isFetching: false,
-			fetch: this.fetch
-		}
-	};
-
 	public componentDidMount(): void {
 		this.controller = new AbortController();
-		this.signal  = this.controller.signal;
+		this.signal = this.controller.signal;
 		this.fetch();
 	}
 
@@ -100,4 +73,31 @@ export class DataFetcher extends React.Component<{url: string; as: string; fetch
 			</Data>
 		);
 	}
+
+	private update = (prevState, nextState): ContextModel => ({
+		[this.props.as]: {
+			...prevState[this.props.as],
+			...nextState
+		}
+	});
+
+	private fetch = (): void => {
+		this.setState(
+			prevState => this.update(prevState, {isFetching: true}),
+			() => {
+				this.props
+					.fetch(this.props.url, {signal: this.signal})
+					.then(data => {
+						this.setState(prevState =>
+							this.update(prevState, {data, isFetching: false})
+						);
+					})
+					.catch(err => {
+						if (err.name !== "AbortError") {
+							throw err;
+						}
+					});
+			}
+		);
+	};
 }

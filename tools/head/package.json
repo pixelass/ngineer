@@ -33,7 +33,7 @@
   ],
   "dependencies": {
     "@types/react": "16.8.23",
-    "@types/styled-components": "4.1.18"
+    "@types/react-dom": "16.8.4"
   },
   "devDependencies": {
     "@ngineer/cli": "1.0.0",
@@ -41,7 +41,7 @@
   },
   "peerDependencies": {
     "react": ">=16",
-    "styled-components": ">=4"
+    "react-dom": ">=16"
   },
   "publishConfig": {
     "access": "public"

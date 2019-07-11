@@ -16,26 +16,29 @@ declare global {
 interface DomOptions {
 	head?: string;
 }
-export const initDOM = ({head = ""}: DomOptions = {}) => {
-	const jsdom = new JSDOM(`<!doctype html><html><head>${head}</head></head><body></body></html>`);
-	const {window} = jsdom;
 
-	const copyProps = (src, target) => {
-		Object.defineProperties(target, {
-			...Object.getOwnPropertyDescriptors(src),
-			...Object.getOwnPropertyDescriptors(target)
-		});
-	};
+const copyProps = (src: Window, target: NodeJS.Global): void => {
+	Object.defineProperties(target, {
+		...Object.getOwnPropertyDescriptors(src),
+		...Object.getOwnPropertyDescriptors(target)
+	});
+};
+
+export const initDOM = ({head = ""}: DomOptions = {}) => {
+	const jsdom = new JSDOM(
+		`<!doctype html><html lang="en"><head><title>Test</title>${head}</head><body></body></html>`
+	);
+	const {window} = jsdom;
 
 	global.window = window;
 	global.document = window.document;
 	global.navigator = {
 		userAgent: "node.js"
 	};
-	global.requestAnimationFrame = callback => {
+	global.requestAnimationFrame = (callback: any): number => {
 		return setTimeout(callback, 0);
 	};
-	global.cancelAnimationFrame = id => {
+	global.cancelAnimationFrame = (id: any): void => {
 		clearTimeout(id);
 	};
 	global.CSS = {

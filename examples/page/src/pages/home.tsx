@@ -1,3 +1,4 @@
+import {Head} from "@ngineer/head";
 import React from "react";
 import {Background} from "../elements/background";
 import {Card} from "../elements/card";
@@ -6,6 +7,10 @@ import {Wrapper} from "../elements/wrapper";
 
 export const Home =  () => (
 	<React.Fragment>
+		<Head>
+			<title>Ngineer home</title>
+			<meta name="description" content="Welcome to Ngineer"/>
+		</Head>
 		<Background/>
 		<Wrapper>
 			<Card>

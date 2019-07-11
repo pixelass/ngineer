@@ -23,14 +23,13 @@ const serverRenderer: Renderer = () => (request, response) => {
 	const cwd = process.cwd();
 	const LIB = path.resolve(cwd, ngineer.lib);
 	const APP = path.resolve(LIB, ngineer.app);
-	const {default: App} = require(APP);
-	const app = ReactDOMServer.renderToString(
+	const {App} = require(APP);
+	const app = ReactDOMServer.renderToStaticMarkup(
 		<StaticRouter location={request.url} context={{}}>
 			<App />
 		</StaticRouter>
 	);
-	const h = ReactDOMServer.renderToString(<Document lang="en" app={app} isServer={isServer} />);
-	const html = `<!doctype html>${h.replace(` data-reactroot=""`, "")}`;
+	const html = `<!doctype html>${ReactDOMServer.renderToStaticMarkup(<Document lang="en" app={app} isServer={isServer} />)}`;
 	if (isServer) {
 		return response.send(html);
 	}

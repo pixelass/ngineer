@@ -1,3 +1,4 @@
+import {Head} from "@ngineer/head";
 import express from "express";
 import path from "path";
 import React from "react";
@@ -15,9 +16,9 @@ export type Renderer = () => Render;
 
 export const renderSSR: Render = (request, response) => {
 	const isServer = typeof response === "object" && typeof response.send === "function";
-	const {default: App} = require(path.resolve(process.cwd(), "lib/app"));
+	const {App} = require(path.resolve(process.cwd(), "lib/app"));
 	const sheet = new ServerStyleSheet();
-	const app = ReactDOMServer.renderToString(
+	const app = ReactDOMServer.renderToStaticMarkup(
 		<StyleSheetManager sheet={sheet.instance}>
 			<StaticRouter location={request.url} context={{}}>
 				<App />
@@ -25,9 +26,10 @@ export const renderSSR: Render = (request, response) => {
 		</StyleSheetManager>
 	);
 	const styles = sheet.getStyleTags();
-	const html = `<!doctype html>${ReactDOMServer.renderToString(
-		<Document styles={styles} app={app} isServer={isServer}/>
-	).replace(` data-reactroot=""`, "")}`;
+	const head = Head.renderStatic();
+	const html = `<!doctype html>${ReactDOMServer.renderToStaticMarkup(
+		<Document head={head} styles={styles} app={app} isServer={isServer}/>
+	)}`;
 	if (isServer) {
 		return response.send(html);
 	}

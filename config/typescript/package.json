@@ -19,7 +19,7 @@
   ],
   "main": "tsconfig.json",
   "dependencies": {
-    "typescript": "3.5.2"
+    "typescript": "3.5.3"
   },
   "engines": {
     "node": ">=8",

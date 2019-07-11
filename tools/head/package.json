@@ -1,8 +1,7 @@
 {
-  "name": "@examples/button",
-  "version": "0.1.0",
-  "private": true,
-  "license": "MIT",
+  "name": "@ngineer/head",
+  "version": "1.0.0",
+    "license": "MIT",
   "author": "Gregor Adams <greg@pixelass.com>",
   "files": [
     "dist",
@@ -43,5 +42,8 @@
   "peerDependencies": {
     "react": ">=16",
     "styled-components": ">=4"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

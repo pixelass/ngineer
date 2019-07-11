@@ -19,6 +19,6 @@
     "watch": "ngineer -w"
   },
   "devDependencies": {
-    "@ngineer/cli": "0.1.0"
+    "@ngineer/cli": "1.0.0"
   }
 }

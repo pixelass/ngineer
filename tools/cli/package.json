@@ -1,6 +1,6 @@
 {
   "name": "@ngineer/cli",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "CLI command for ngineer",
   "homepage": "https://pixelass.github.io/ngineer",
   "bugs": {
@@ -31,15 +31,15 @@
     "watch": "rollup -cw"
   },
   "dependencies": {
-    "@ngineer/configs": "0.1.0",
-    "@ngineer/server": "0.1.0",
+    "@ngineer/configs": "1.0.0",
+    "@ngineer/server": "1.0.0",
     "@types/meow": "5.0.0",
     "@types/mkdirp": "0.5.2",
-    "concurrently": "4.1.0",
+    "concurrently": "4.1.1",
     "cosmiconfig": "5.2.1",
     "cross-env": "5.2.0",
-    "execa": "1.0.0",
-    "globby": "9.2.0",
+    "execa": "2.0.3",
+    "globby": "10.0.1",
     "meow": "5.0.0",
     "mkdirp": "0.5.1",
     "rimraf": "2.6.3"

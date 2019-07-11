@@ -8,7 +8,7 @@ import {routes} from "./routes";
 import GlobalStyle from "./style";
 import theme from "./theme";
 
-const App = () => (
+const AppContent = () => (
 	<ThemeProvider theme={theme}>
 		<React.Fragment>
 			<GlobalStyle />
@@ -22,4 +22,4 @@ const App = () => (
 		</React.Fragment>
 	</ThemeProvider>
 );
-export default hot(App);
+export const App = hot(AppContent);

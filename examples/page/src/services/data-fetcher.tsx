@@ -2,12 +2,25 @@ import React from "react";
 export interface DataEntry {
 	[x: string]: any;
 }
-export type Fetch = (url: string) => Promise<DataModel>;
+
+export type Fetch = (
+	url: string,
+	options: {
+		signal: any;
+	}
+) => void;
+
+export type FetchData = (
+	url: string,
+	options: {
+		signal: any;
+	}
+) => Promise<{[k: string]: any}>;
 
 export interface DataModel {
 	isFetching: boolean;
 	data: DataEntry | DataEntry[];
-	fetch: () => void;
+	fetch: Fetch;
 }
 export interface ContextModel {
 	[x: string]: DataModel;
@@ -15,34 +28,63 @@ export interface ContextModel {
 const {Provider, Consumer: Data} = React.createContext({}) as React.Context<ContextModel>;
 export {Data};
 
-export class DataFetcher extends React.Component<{url: string; as: string; fetch?: Fetch}> {
+export class DataFetcher extends React.Component<{url: string; as: string; fetch?: FetchData}> {
 	static get defaultProps() {
 		return {
-			fetch: url => fetch(url).then(res => res.json())
+			fetch: (url, options) => fetch(url, options).then(res => res.json())
 		};
 	}
-	public state = {};
-	public fetch = () => {
-		this.setState(prevState => {
-			if (prevState[this.props.as]) {
-				return {[this.props.as]: {data: prevState[this.props.as].data, isFetching: true}};
+
+	private controller: AbortController;
+
+	private signal: AbortSignal;
+
+	private update = (prevState, nextState): ContextModel  => ({
+		[this.props.as]: {
+			...prevState[this.props.as],
+			...nextState
+		}
+	});
+
+	private fetch = (): void => {
+		this.setState(
+			prevState => this.update(prevState, {isFetching: true}),
+			() => {
+				this.props
+					.fetch(this.props.url, {signal: this.signal})
+					.then(data => {
+						this.setState(prevState =>
+							this.update(prevState, {data, isFetching: false})
+						);
+					})
+					.catch(err => {
+						if (err.name !== "AbortError") {
+							console.error(err);
+						}
+					});
 			}
-			return {[this.props.as]: {data: [], isFetching: true}};
-		});
-		this.props
-			.fetch(this.props.url)
-			.then(data => {
-				this.setState({[this.props.as]: {data, isFetching: false, fetch: this.fetch}});
-			})
-			.catch(err => {
-				throw err;
-			});
+		);
 	};
 
-	public componentDidMount() {
+	public state: ContextModel = {
+		[this.props.as]: {
+			data: [],
+			isFetching: false,
+			fetch: this.fetch
+		}
+	};
+
+	public componentDidMount(): void {
+		this.controller = new AbortController();
+		this.signal  = this.controller.signal;
 		this.fetch();
 	}
-	public componentDidUpdate(oldProps) {
+
+	public componentWillUnmount(): void {
+		this.controller.abort();
+	}
+
+	public componentDidUpdate(oldProps): void {
 		if (
 			this.props.url !== oldProps.url ||
 			this.props.fetch !== oldProps.fetch ||
@@ -51,7 +93,7 @@ export class DataFetcher extends React.Component<{url: string; as: string; fetch
 			this.fetch();
 		}
 	}
-	public render() {
+	public render(): React.ReactNode {
 		return (
 			<Data>
 				{ctx => <Provider value={{...ctx, ...this.state}}>{this.props.children}</Provider>}

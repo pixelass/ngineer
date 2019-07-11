@@ -19,7 +19,9 @@
   "main": "index.js",
   "bin": "bin.js",
   "dependencies": {
-    "execa": "2.0.2",
+    "@ngineer/cli": "1.0.0",
+    "@ngineer/configs": "1.0.0",
+    "execa": "2.0.3",
     "github-username": "5.0.1",
     "meow": "5.0.0",
     "mkdirp": "0.5.1",

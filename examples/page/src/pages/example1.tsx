@@ -7,9 +7,10 @@ import {Headline} from "../elements/headline";
 import {Spinner} from "../elements/spinner";
 import {Wrapper} from "../elements/wrapper";
 import {Data, DataFetcher} from "../services/data-fetcher";
+import { Head } from "@ngineer/head";
 
-const delayedFetcher = (delay: number = 500) => (url: string): Promise<any> =>
-	fetch(url).then(
+const delayedFetcher = (delay: number = 500) => (url: string, options): Promise<any> =>
+	fetch(url, options).then(
 		res =>
 			new Promise(resolve => {
 				setTimeout(() => {
@@ -20,9 +21,8 @@ const delayedFetcher = (delay: number = 500) => (url: string): Promise<any> =>
 export interface PostData {
 	[key: string]: string | number | boolean | null;
 }
-const postData = (url: string, data: PostData = {}) =>
+const postData = (url: string, options) =>
 	fetch(url, {
-		body: JSON.stringify(data),
 		cache: "no-cache",
 		credentials: "same-origin",
 		headers: {
@@ -31,7 +31,8 @@ const postData = (url: string, data: PostData = {}) =>
 		method: "POST",
 		mode: "cors",
 		redirect: "follow",
-		referrer: "no-referrer"
+		referrer: "no-referrer",
+		...options
 	}).then(response => response.json());
 
 const StyledSpinner = styled(Spinner)`
@@ -53,34 +54,37 @@ const LoadingButton = ({children, isLoading, ...props}) => (
 	</StyledButton>
 );
 
-const FetchButton = ({name}) => (
+const FetchButton = ({asProp}) => {
+	const label = `Fetch ${asProp}`;
+	return (
 	<Data>
-		{({[name]: items}) => (
+		{({[asProp]: items}) => (
 			<LoadingButton
 				onClick={items && items.fetch}
 				disabled={!items || items.isFetching}
 				isLoading={items && items.isFetching}>
-				Fetch {name}
+				{label}
 			</LoadingButton>
 		)}
 	</Data>
-);
+)};
 
 const postDummy = (name, fetchJson) => async () => {
 	const id = `${uuid()}`;
-	await postData(`/api/${name}`, {id, label: Math.ceil(Math.random() * 1000)});
+	await postData(`/api/${name}`, {body: JSON.stringify({id, label: Math.ceil(Math.random() * 1000)})});
 	fetchJson();
 };
 
-const AddButton = ({name}) => {
+const AddButton = ({asProp}) => {
+	const label = `Add ${asProp}`;
 	return (
 		<Data>
-			{({[name]: items}) => (
+			{({[asProp]: items}) => (
 				<LoadingButton
-					onClick={postDummy(name, items ? items.fetch : () => undefined)}
+					onClick={postDummy(asProp, items.fetch)}
 					disabled={!items || items.isFetching}
 					isLoading={items && items.isFetching}>
-					Add {name}
+					{label}
 				</LoadingButton>
 			)}
 		</Data>
@@ -92,9 +96,9 @@ const Logger = () => (
 		{ctx =>
 			Object.keys(ctx).map(key => (
 				<Card key={key}>
-					{key === "entries" ? <AddButton name={key} /> : <FetchButton name={key} />}
+					{key === "entries" ? <AddButton asProp={key} /> : <FetchButton asProp={key} />}
 					<Headline as="h3">
-						{key} {ctx[key].isFetching && <Spinner style={{fontSize: "0.8em"}} />}
+						{key}{ctx[key].isFetching && <React.Fragment> <Spinner style={{fontSize: "0.8em"}} /></React.Fragment>}
 					</Headline>
 					<pre>
 						<code>{JSON.stringify(ctx[key], null, 4)}</code>
@@ -113,13 +117,13 @@ const Child = () => (
 
 export const Example1 = () => (
 	<React.Fragment>
+		<Head>
+			<title>Ngineer examples</title>
+		</Head>
 		<Wrapper>
 			<DataFetcher url="/api/entries" as="entries">
 				<DataFetcher url="/api/simpsons" as="simpsons" fetch={delayedFetcher(5000)}>
-					<Card>
-						<Headline>API mocks.</Headline>
-						<Child />
-					</Card>
+					<Child />
 				</DataFetcher>
 			</DataFetcher>
 		</Wrapper>

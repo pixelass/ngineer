@@ -1,7 +1,7 @@
-import { createElement } from "react";
-import { hydrate } from "react-dom";
-import { BrowserRouter } from "react-router-dom";
-import App from "./app";
+import {createElement} from "react";
+import {hydrate} from "react-dom";
+import {BrowserRouter} from "react-router-dom";
+import {App} from "./app";
 
 const appRoot = document.querySelector("[data-app-root]");
 const {classList} = document.documentElement;

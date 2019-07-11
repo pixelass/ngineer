@@ -5,6 +5,8 @@ const mkdirp = require("mkdirp");
 const ora = require("ora");
 const path = require("path");
 const pify = require("pify");
+const {version: cliVersion} = require("@ngineer/cli/package.json");
+const {version: configsVersion} = require("@ngineer/configs/package.json");
 
 const {writeFile} = pify(fs);
 const mkdir = pify(mkdirp);
@@ -48,7 +50,7 @@ const server = new Server();
 server.start();
 `;
 
-const CREATE_PACKAGE = async ({git, pkg: {name, description}, ts, version}) =>
+const CREATE_PACKAGE = async ({git, pkg: {name, description}, ts}) =>
 	JSON.stringify(
 		{
 			name,
@@ -62,10 +64,11 @@ const CREATE_PACKAGE = async ({git, pkg: {name, description}, ts, version}) =>
 				build: "ngineer build -p",
 				clean: "ngineer clean",
 				dev: "concurrently 'yarn serve:json' 'ngineer -w' 'ngineer dev-server'",
+				flush: "node flush.js",
 				lint: `ngineer lint 'src/**/*.{${withTS(ts, "ts,tsx", "js,jsx")},css}'`,
-				prebuild: "yarn clean && ngineer -p",
-				predev: "yarn clean && ngineer",
-				prestart: "yarn build",
+				prebuild: "yarn flush; yarn clean && ngineer -p",
+				predev: "yarn flush; yarn clean && ngineer",
+				prestart: "yarn flush; yarn build",
 				"serve:json": "json-server --watch db.json --port 1337",
 				"serve:public": "serve public",
 				start: "yarn serve:public"
@@ -96,15 +99,14 @@ const CREATE_PACKAGE = async ({git, pkg: {name, description}, ts, version}) =>
 				"react-router-dom": await getVersion("react-router-dom")
 			},
 			devDependencies: {
-				"@ngineer/cli": version,
-				"@ngineer/configs": version,
-				"@ngineer/server": version,
+				"@ngineer/cli": cliVersion,
+				"@ngineer/configs": configsVersion,
 				concurrently: await getVersion("concurrently"),
-				"webpack-merge": await getVersion("webpack-merge"),
 				"html-react-parser": await getVersion("html-react-parser"),
 				"html-webpack-plugin": await getVersion("html-webpack-plugin@next"),
 				"json-server": await getVersion("json-server"),
-				serve: await getVersion("serve")
+				serve: await getVersion("serve"),
+				"webpack-merge": await getVersion("webpack-merge")
 			}
 		},
 		null,
@@ -115,9 +117,9 @@ const APP = `import React from "react";
 import {hot} from "react-hot-loader/root";
 import {Route, Switch} from "react-router";
 import {routes} from "./routes";
-import NotFound from "./pages/not-found";
+import {NotFound} from "./pages";
 
-const App = () => (
+const AppContent = () => (
 	<Switch>
 		{routes.map(({component, location}) => (
 			<Route key={location} exact={true} path={location} component={component} />
@@ -125,13 +127,13 @@ const App = () => (
 		<Route component={NotFound} />
 	</Switch>
 );
-export default hot(App);
+export const App = hot(AppContent);
 `;
 
-const INDEX = `import { createElement } from "react";
-import { hydrate } from "react-dom";
-import { BrowserRouter } from "react-router-dom";
-import App from "./app";
+const INDEX = `import {createElement} from "react";
+import {hydrate} from "react-dom";
+import {BrowserRouter} from "react-router-dom";
+import {App} from "./app";
 import "./style.css";
 
 const appRoot = document.querySelector("[data-app-root]");
@@ -143,7 +145,7 @@ hydrate(createElement(BrowserRouter, null, createElement(App)), appRoot);
 `;
 
 const CREATE_ROUTES = ts => `import React from "react";
-import { Home, NotFound } from "./pages";
+import {Home, NotFound} from "./pages";
 
 ${withTS(
 	ts,
@@ -235,6 +237,27 @@ const DB = `{
   }
 }`;
 
+const FLUSH = `
+const {writeFile} = require("fs");
+const path = require("path");
+
+const DATA = JSON.stringify(
+	{
+		"user": {
+			"name": "John Doe"
+		}
+	},
+	null,
+	2
+);
+
+writeFile(path.resolve(__dirname, "db.json"), DATA, "utf-8", err => {
+	if (err) {
+		console.error(err);
+	}
+});
+`;
+
 const STYLE = `body {
 	margin: 0;
 	font-family:
@@ -290,8 +313,6 @@ module.exports = async function run({dirname, pkg, config: {typescript: ts}}) {
 		jsx: withTS(ts, "tsx", "jsx")
 	};
 
-	const version = await getVersion("@ngineer/cli", "0.1.0");
-
 	const {stdout: name} = await execa("git", ["config", "user.name"]);
 	const {stdout: email} = await execa("git", ["config", "user.email"]);
 	const username = await githubUsername(email);
@@ -311,7 +332,7 @@ module.exports = async function run({dirname, pkg, config: {typescript: ts}}) {
 		]);
 	}
 	await Promise.all([
-		writeFile(path.resolve(dirname, "db.json"), DB),
+		writeFile(path.resolve(dirname, "flush.js"), FLUSH),
 		writeFile(path.resolve(dirname, "nodemon.json"), NODEMON),
 		writeFile(path.resolve(dirname, "postcss.config.js"), POSTCSS),
 		writeFile(path.resolve(dirname, ".prettierrc.js"), PRETTIER),
@@ -331,8 +352,7 @@ module.exports = async function run({dirname, pkg, config: {typescript: ts}}) {
 					username
 				},
 				pkg,
-				ts,
-				version
+				ts
 			})
 		),
 

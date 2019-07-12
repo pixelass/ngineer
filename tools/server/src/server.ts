@@ -5,7 +5,7 @@ import express from "express";
 import https from "https";
 import path from "path";
 import pem from "pem";
-import renderer, {Renderer} from "./renderer";
+import {serverRenderer, Renderer} from "./renderer";
 
 export interface Certificate {
 	serviceKey: string;
@@ -101,7 +101,7 @@ export class Server {
 		public: {
 			dir: path.resolve(process.cwd(), ngineer.public)
 		},
-		renderer
+		renderer: serverRenderer
 	};
 
 	/**
@@ -154,5 +154,3 @@ export class Server {
 		});
 	}
 }
-
-export {renderer};

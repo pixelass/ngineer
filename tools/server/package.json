@@ -44,6 +44,7 @@
     "cosmiconfig": "5.2.1",
     "express": "4.17.1",
     "html-react-parser": "0.9.1",
+    "https": "1.0.0",
     "nodemon": "1.19.1",
     "pem": "1.14.2"
   },
@@ -54,7 +55,7 @@
     "react": ">=16",
     "react-dom": ">=16",
     "react-router": ">=5",
-    "react-router-dom": ">=5",
+    "react-router-dom": ">=5"
   },
   "peerDependencies": {
     "react": ">=16",

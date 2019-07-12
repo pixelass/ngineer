@@ -1,0 +1,30 @@
+{
+  "name": "@ngineer/config-commitlint",
+  "version": "1.1.0",
+  "description": "extendable commitlint configs",
+  "homepage": "https://pixelass.github.io/ngineer",
+  "bugs": {
+    "url": "https://github.com/pixelass/ngineer/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pixelass/ngineer.git"
+  },
+  "license": "MIT",
+  "author": "Gregor Adams <greg@pixelass.com>",
+  "files": [
+    "config/*",
+    "index.js"
+  ],
+  "main": "index.js",
+  "dependencies": {
+    "@commitlint/cli": "8.0.0"
+  },
+  "engines": {
+    "node": ">=8",
+    "npm": ">=6"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

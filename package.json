@@ -27,6 +27,7 @@
     "build:examples": "lerna run build --scope @examples/* --stream",
     "build:packages": "lerna run build --scope @ngineer/* --ignore @ngineer/cli --stream",
     "clean": "yarn lerna run clean --parallel",
+    "create-ngineer-app": "node tools/create-engineer-app/bin.js",
     "dev": "concurrently 'yarn watch' 'yarn dev:parallel'",
     "dev:examples": "concurrently 'yarn watch --ignore @ngineer/*' 'yarn dev:parallel'",
     "dev:parallel": "lerna run dev --parallel",

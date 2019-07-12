@@ -1,6 +1,6 @@
 {
   "name": "@examples/button",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "private": true,
   "license": "MIT",
   "author": "Gregor Adams <greg@pixelass.com>",
@@ -37,8 +37,8 @@
     "@types/styled-components": "4.1.18"
   },
   "devDependencies": {
-    "@ngineer/cli": "^1.1.0",
-    "@ngineer/testing-utils": "^1.1.0"
+    "@ngineer/cli": "^1.2.0",
+    "@ngineer/testing-utils": "^1.2.0"
   },
   "peerDependencies": {
     "react": ">=16",

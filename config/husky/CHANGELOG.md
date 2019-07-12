@@ -5,15 +5,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 # [1.2.0](https://github.com/pixelass/ngineer/compare/v1.1.0...v1.2.0) (2019-07-12)
 
-**Note:** Version bump only for package @examples/page
-
-
-
-
-
-# [1.1.0](https://github.com/pixelass/ngineer/compare/v1.0.0...v1.1.0) (2019-07-11)
-
 
 ### Features
 
-* **head:** added new package ([0ee0521](https://github.com/pixelass/ngineer/commit/0ee0521))
+* **config-husky:** new config package ([d11b552](https://github.com/pixelass/ngineer/commit/d11b552))

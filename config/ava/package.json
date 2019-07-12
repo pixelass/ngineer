@@ -1,6 +1,6 @@
 {
   "name": "@ngineer/config-ava",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "extendable ava configs",
   "homepage": "https://pixelass.github.io/ngineer",
   "bugs": {

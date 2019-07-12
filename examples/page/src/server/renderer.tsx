@@ -1,5 +1,5 @@
 import {Head} from "@ngineer/head";
-import {toHTML, toHTML5, App} from "@ngineer/server";
+import {App, toHTML, toHTML5} from "@ngineer/server";
 import React from "react";
 import {StaticRouter} from "react-router";
 import {ServerStyleSheet, StyleSheetManager} from "styled-components";

@@ -35,6 +35,14 @@ export class DataFetcher extends React.Component<{url: string; as: string; fetch
 		};
 	}
 
+	public state: ContextModel = {
+		[this.props.as]: {
+			data: [],
+			fetch: this.fetch,
+			isFetching: false
+		}
+	};
+
 	private controller: AbortController;
 
 	private signal: AbortSignal;
@@ -91,14 +99,6 @@ export class DataFetcher extends React.Component<{url: string; as: string; fetch
 					});
 			}
 		);
-	};
-
-	public state: ContextModel = {
-		[this.props.as]: {
-			data: [],
-			fetch: this.fetch,
-			isFetching: false
-		}
 	};
 
 }

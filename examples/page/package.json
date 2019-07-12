@@ -54,7 +54,7 @@
   "devDependencies": {
     "@ngineer/cli": "^1.1.0",
     "@ngineer/configs": "^1.1.0",
-    "@ngineer/server": "1.0.0",
+    "@ngineer/server": "1.1.0",
     "concurrently": "4.1.1",
     "html-webpack-plugin": "4.0.0-beta.5",
     "json-server": "0.15.0",

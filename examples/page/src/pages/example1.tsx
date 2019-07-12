@@ -119,6 +119,7 @@ export const Example1 = () => (
 	<React.Fragment>
 		<Head>
 			<title>Ngineer examples</title>
+			<meta name="description" content="API Mocks made easy"/>
 		</Head>
 		<Wrapper>
 			<DataFetcher url="/api/entries" as="entries">

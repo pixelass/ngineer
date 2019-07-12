@@ -1,24 +1,14 @@
 import {Head} from "@ngineer/head";
-import express from "express";
-import path from "path";
+import {toHTML, toHTML5, App} from "@ngineer/server";
 import React from "react";
-import ReactDOMServer from "react-dom/server";
 import {StaticRouter} from "react-router";
 import {ServerStyleSheet, StyleSheetManager} from "styled-components";
 import {Document} from "./template";
 
-export type Render = (
-	request: express.Request,
-	response: express.Response
-) => express.Response | string;
-
-export type Renderer = () => Render;
-
-export const renderSSR: Render = (request, response) => {
+export const renderSSR = (request, response) => {
 	const isServer = typeof response === "object" && typeof response.send === "function";
-	const {App} = require(path.resolve(process.cwd(), "lib/app"));
 	const sheet = new ServerStyleSheet();
-	const app = ReactDOMServer.renderToStaticMarkup(
+	const app = toHTML(
 		<StyleSheetManager sheet={sheet.instance}>
 			<StaticRouter location={request.url} context={{}}>
 				<App />
@@ -27,12 +17,10 @@ export const renderSSR: Render = (request, response) => {
 	);
 	const styles = sheet.getStyleTags();
 	const head = Head.renderStatic();
-	const html = `<!doctype html>${ReactDOMServer.renderToStaticMarkup(
-		<Document head={head} styles={styles} app={app} isServer={isServer}/>
-	)}`;
+	const html = toHTML5(<Document head={head} styles={styles} app={app} isServer={isServer} />);
 	if (isServer) {
 		return response.send(html);
 	}
 	return html;
 };
-export const serverRenderer: Renderer = () => renderSSR;
+export const serverRenderer = () => renderSSR;

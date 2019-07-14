@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.3.0](https://github.com/pixelass/ngineer/compare/v1.2.0...v1.3.0) (2019-07-14)
+
+
+### Bug Fixes
+
+* **create-ngineer-app:** use valid bin header ([d3a6839](https://github.com/pixelass/ngineer/commit/d3a6839))
+
+
+### Features
+
+* **create-ngineer-app:** include husky and commitlint ([5e3cd78](https://github.com/pixelass/ngineer/commit/5e3cd78))
+
+
+
+
+
 # [1.2.0](https://github.com/pixelass/ngineer/compare/v1.1.0...v1.2.0) (2019-07-12)
 
 

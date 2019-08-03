@@ -1,6 +1,6 @@
 {
   "name": "@ngineer/configs",
-  "version": "1.2.0",
+  "version": "1.3.1",
   "description": "A collection of config files and tools",
   "homepage": "https://pixelass.github.io/ngineer",
   "bugs": {
@@ -24,15 +24,15 @@
   },
   "dependencies": {
     "@ngineer/config": "^1.1.0",
-    "@ngineer/config-ava": "^1.2.0",
-    "@ngineer/config-babel": "^1.1.0",
+    "@ngineer/config-ava": "^1.3.1",
+    "@ngineer/config-babel": "^1.3.1",
     "@ngineer/config-postcss": "^1.1.0",
     "@ngineer/config-prettier": "^1.1.0",
-    "@ngineer/config-rollup": "^1.2.0",
-    "@ngineer/config-stylelint": "^1.2.0",
+    "@ngineer/config-rollup": "^1.3.1",
+    "@ngineer/config-stylelint": "^1.3.1",
     "@ngineer/config-tslint": "^1.1.0",
     "@ngineer/config-typescript": "^1.1.0",
-    "@ngineer/config-webpack": "^1.1.0"
+    "@ngineer/config-webpack": "^1.3.1"
   },
   "engines": {
     "node": ">=8",

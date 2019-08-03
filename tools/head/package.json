@@ -1,6 +1,6 @@
 {
   "name": "@ngineer/head",
-  "version": "1.2.0",
+  "version": "1.3.1",
   "license": "MIT",
   "author": "Gregor Adams <greg@pixelass.com>",
   "files": [
@@ -36,8 +36,8 @@
     "@types/react-dom": "16.8.5"
   },
   "devDependencies": {
-    "@ngineer/cli": "^1.2.0",
-    "@ngineer/testing-utils": "^1.2.0"
+    "@ngineer/cli": "^1.3.1",
+    "@ngineer/testing-utils": "^1.3.1"
   },
   "peerDependencies": {
     "react": ">=16",

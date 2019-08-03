@@ -23,17 +23,17 @@
   ],
   "main": "esnext.js",
   "dependencies": {
-    "@babel/cli": "7.5.0",
-    "@babel/core": "7.5.4",
-    "@babel/plugin-proposal-class-properties": "7.5.0",
-    "@babel/plugin-proposal-object-rest-spread": "7.5.4",
-    "@babel/preset-env": "7.5.4",
+    "@babel/cli": "7.5.5",
+    "@babel/core": "7.5.5",
+    "@babel/plugin-proposal-class-properties": "7.5.5",
+    "@babel/plugin-proposal-object-rest-spread": "7.5.5",
+    "@babel/preset-env": "7.5.5",
     "@babel/preset-react": "7.0.0",
     "@babel/preset-typescript": "7.3.3",
     "@ngineer/config-typescript": "^1.1.0",
     "babel-plugin-styled-components": "1.10.6",
     "babel-plugin-transform-inline-environment-variables": "0.4.3",
-    "react-hot-loader": "4.12.6"
+    "react-hot-loader": "4.12.10"
   },
   "devDependencies": {
     "react": ">=16",

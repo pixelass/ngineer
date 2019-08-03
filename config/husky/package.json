@@ -19,7 +19,7 @@
   "main": "index.js",
   "dependencies": {
     "@ngineer/config-commitlint": "^1.2.0",
-    "husky": "3.0.0"
+    "husky": "3.0.2"
   },
   "engines": {
     "node": ">=8",

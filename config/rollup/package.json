@@ -20,12 +20,12 @@
   ],
   "main": "esnext.js",
   "dependencies": {
-    "@babel/core": "7.5.4",
-    "rollup": "1.16.7",
+    "@babel/core": "7.5.5",
+    "rollup": "1.18.0",
     "rollup-plugin-babel": "4.3.3",
     "rollup-plugin-json": "4.0.0",
     "rollup-plugin-resolve2": "1.0.0",
-    "rollup-plugin-typescript2": "0.22.0",
+    "rollup-plugin-typescript2": "0.22.1",
     "typescript": "3.5.3"
   },
   "engines": {

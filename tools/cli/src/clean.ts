@@ -1,8 +1,9 @@
+import ngineerDefaultConfig from "@ngineer/config";
+import cosmiconfig from "cosmiconfig";
 import execa from "execa";
-const ngineerDefaultConfig = require("@ngineer/config");
-const cosmiconfig = require("cosmiconfig");
-const explorer = cosmiconfig("ngineer");
 import {input} from "./cli";
+
+const explorer = cosmiconfig("ngineer");
 
 const {config: ngineerCustomConfig} = explorer.searchSync() || {config: {}};
 const config = {

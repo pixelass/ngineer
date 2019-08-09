@@ -1,5 +1,5 @@
-import path from "path";
 import execa from "execa";
+import path from "path";
 
 export default () => {
 	const cwd = process.cwd();

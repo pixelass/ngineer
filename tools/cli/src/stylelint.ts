@@ -1,7 +1,7 @@
 import cosmiconfig from "cosmiconfig";
 import execa from "execa";
 import path from "path";
-import {input, flags} from "./cli";
+import {flags, input} from "./cli";
 
 export default () => {
 	const explorer = cosmiconfig("stylelint");

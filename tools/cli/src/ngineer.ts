@@ -49,6 +49,7 @@ setEnv({
 			pack();
 			break;
 		default:
+			// tslint:disable-next-line:no-console
 			console.error(`ngineer "${cmd}" (invalid command)`);
 			break;
 	}

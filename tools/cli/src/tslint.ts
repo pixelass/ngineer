@@ -1,5 +1,5 @@
 import execa from "execa";
-import {input, flags} from "./cli";
+import {flags, input} from "./cli";
 
 export default () =>
 	execa(

@@ -5,9 +5,11 @@ import WebpackDevServer from "webpack-dev-server";
 export default () => {
 	const cwd = process.cwd();
 	const devOptions = require(path.resolve(cwd, "webpack.dev.js"))(process.env, process.argv);
-	const {entry} = devOptions;
+	const {entry, devServer} = devOptions;
+	const {host, port} = devServer;
+	const protocol = devServer.https ? "https:" : "http:";
 	devOptions.entry = [
-		`webpack-dev-server/client?https://${devOptions.devServer.host}:${devOptions.devServer.port}`,
+		`webpack-dev-server/client?${protocol}//${host}:${port}`,
 		"webpack/hot/dev-server",
 		entry
 	];
@@ -15,17 +17,18 @@ export default () => {
 
 	const compiler = webpack(devOptions);
 	const devServerOptions = {
-		...devOptions.devServer,
+		...devServer,
 		stats: {
 			colors: true
 		}
 	};
 	const server = new WebpackDevServer(compiler, devServerOptions);
-	server.listen(devServerOptions.port, devServerOptions.host, () => {
+	server.listen(port, host, () => {
+		// tslint:disable-next-line:no-console
 		console.info(
-			`Starting server on ${devServerOptions.https ? "https" : "http"}://${
-				devServerOptions.host
-			}:${devServerOptions.port}`
+			`Starting server on ${protocol}//${
+				host
+			}:${port}`
 		);
 	});
 };

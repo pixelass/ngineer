@@ -1,23 +1,45 @@
+import {INITIAL_STATE_PROP} from "@ngineer/graphql";
 import {Head} from "@ngineer/head";
-import {App, toHTML, toHTML5} from "@ngineer/server";
+import {toHTML, toHTML5} from "@ngineer/server";
+import express from "express";
 import React from "react";
 import {StaticRouter} from "react-router";
 import {ServerStyleSheet, StyleSheetManager} from "styled-components";
+import {App, graphQL} from "../app";
+import {routes} from "../routes";
 import {Document} from "./template";
 
-export const renderSSR = (request, response) => {
+const routeMap = routes.reduce(
+	(previousValue, {location, name}) => ({...previousValue, [location]: name}),
+	{"*": "notFound"}
+);
+
+export const renderSSR = async (request: express.Request, response: express.Response) => {
 	const isServer = typeof response === "object" && typeof response.send === "function";
 	const sheet = new ServerStyleSheet();
-	const app = toHTML(
-		<StyleSheetManager sheet={sheet.instance}>
-			<StaticRouter location={request.url} context={{}}>
-				<App />
-			</StaticRouter>
-		</StyleSheetManager>
+	const name = routeMap[request.url] || routeMap["*"];
+	const render = (data?) => (
+		<StaticRouter location={request.url} context={{}}>
+			<App data={data} />
+		</StaticRouter>
 	);
+	toHTML(<StyleSheetManager sheet={sheet.instance}>{render()}</StyleSheetManager>);
+	const cache = await graphQL.collect();
+	Head.rewind();
+	const app = toHTML(render(cache));
 	const styles = sheet.getStyleTags();
 	const head = Head.renderStatic();
-	const html = toHTML5(<Document head={head} styles={styles} app={app} isServer={isServer} />);
+	const html = toHTML5(
+		<Document
+			head={head}
+			app={app}
+			isServer={isServer}
+			scripts={`<script>window.${INITIAL_STATE_PROP} = ${JSON.stringify({
+				[name]: cache[name]
+			})}</script>`}
+			styles={styles}>
+		</Document>
+	);
 	if (isServer) {
 		return response.send(html);
 	}

@@ -104,7 +104,7 @@ export const Sidebar = props => {
 			<Panel isOpen={isOpen}>
 				<Nav>
 					<StyledLink to="/">Home</StyledLink>
-					<StyledLink to="/example1">Example 1</StyledLink>
+					<StyledLink to="/example">Example</StyledLink>
 				</Nav>
 			</Panel>
 		</React.Fragment>

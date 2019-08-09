@@ -1,3 +1,9 @@
-export * from "./example1";
-export * from "./home";
-export * from "./not-found";
+import * as Example from "./example";
+import * as Home from "./home";
+import * as NotFound from "./not-found";
+
+export {
+	Example,
+	Home,
+	NotFound
+}

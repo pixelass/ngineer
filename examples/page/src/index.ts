@@ -1,3 +1,4 @@
+import {INITIAL_STATE_PROP} from "@ngineer/graphql";
 import {createElement} from "react";
 import {hydrate} from "react-dom";
 import {BrowserRouter} from "react-router-dom";
@@ -8,4 +9,6 @@ const {classList} = document.documentElement;
 classList.remove("no-js");
 classList.add("js");
 
-hydrate(createElement(BrowserRouter, null, createElement(App)), appRoot);
+const data = window[INITIAL_STATE_PROP];
+delete window[INITIAL_STATE_PROP];
+hydrate(createElement(BrowserRouter, null, createElement(App, {data})), appRoot);

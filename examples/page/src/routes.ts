@@ -1,9 +1,13 @@
 import React from "react";
-import { Example1, Home, NotFound } from "./pages";
+import { Example, Home, NotFound } from "./pages";
 
 export interface Route {
-	component: React.ComponentType<any>;
+	component: {
+		Page: React.ComponentType<any>;
+		query: string;
+	};
 	location: string;
+	name: string;
 }
 
 export type Routes = Route[];
@@ -11,14 +15,17 @@ export type Routes = Route[];
 export const routes = [
 	{
 		component: Home,
-		location: "/"
+		location: "/",
+		name: "home"
 	},
 	{
-		component: Example1,
-		location: "/example1"
+		component: Example,
+		location: "/example",
+		name: "example"
 	},
 	{
 		component: NotFound,
-		location: "/404"
+		location: "/404",
+		name: "notFound"
 	}
 ] as Routes;

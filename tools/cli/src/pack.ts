@@ -1,5 +1,5 @@
-const ngineerDefaultConfig = require("@ngineer/config");
-const cosmiconfig = require("cosmiconfig");
+import ngineerDefaultConfig from "@ngineer/config";
+import cosmiconfig from "cosmiconfig";
 import execa from "execa";
 import path from "path";
 import {flags} from "./cli";
@@ -20,7 +20,7 @@ const babel = () => {
 	if (!babelConfig) {
 		options.push("--config-file", "@ngineer/config-babel");
 	} else {
-		options.push("--extensions", ".ts,.tsx,.js,.jsx");
+		options.push("--extensions", ".ts,.tsx,.mjs,.js,.jsx");
 	}
 	if (!flags.prod) {
 		options.push("--source-maps");

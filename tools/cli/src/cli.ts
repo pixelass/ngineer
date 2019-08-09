@@ -21,17 +21,29 @@ export const {
 `,
 	{
 		flags: {
-			rollup: {
-				type: "boolean",
-				alias: "r"
+			fix: {
+				alias: "f",
+				type: "boolean"
 			},
-			watch: {
-				type: "boolean",
-				alias: "w"
+			prod: {
+				alias: "p",
+				type: "boolean"
+			},
+			rollup: {
+				alias: "r",
+				type: "boolean"
 			},
 			tsc: {
-				type: "boolean",
-				alias: "t"
+				alias: "t",
+				type: "boolean"
+			},
+			update: {
+				alias: "u",
+				type: "boolean"
+			},
+			watch: {
+				alias: "w",
+				type: "boolean"
 			}
 		}
 	}

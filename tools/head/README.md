@@ -1,1 +1,1 @@
-# Typescript & styled-components example
+# Head

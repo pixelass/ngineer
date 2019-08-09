@@ -13,7 +13,7 @@ export const toHTML5 = (js: React.ReactElement): string => `<!doctype html>${toH
 export type Renderer = () => (
 	request: express.Request,
 	response: express.Response
-) => express.Response | string;
+) => Promise<express.Response | string>
 
 const explorer = cosmiconfig("ngineer");
 const {config: ngineerCustomConfig} = explorer.searchSync();
@@ -24,18 +24,21 @@ export const ngineerConfig = {
 export const cwd = process.cwd();
 export const LIB = path.resolve(cwd, ngineerConfig.lib);
 export const APP = path.resolve(LIB, ngineerConfig.app);
+// tslint:disable-next-line:no-var-requires
 export const {App} = require(APP);
 
-export const serverRenderer: Renderer = () => (request, response) => {
-	const isServer = typeof response === "object" && typeof response.send === "function";
-	const app = toHTML(
-		<StaticRouter location={request.url} context={{}}>
-			<App />
-		</StaticRouter>
-	);
-	const html = toHTML5(<Document lang="en" app={app} isServer={isServer} />);
-	if (isServer) {
-		return response.send(html);
+export function serverRenderer() {
+	return async (request, response) => {
+		const isServer = typeof response === "object" && typeof response.send === "function";
+		const app = toHTML(
+			<StaticRouter location={request.url} context={{}}>
+				<App />
+			</StaticRouter>
+		);
+		const html = toHTML5(<Document lang="en" app={app} isServer={isServer} />);
+		if (isServer) {
+			return response.send(html);
+		}
+		return html;
 	}
-	return html;
 };

@@ -26,7 +26,7 @@ module.exports = () => {
 					format: "esm"
 				}
 			],
-			plugins: [json(), resolve({extensions: [".jsx", ".js"]}), babel()]
+			plugins: [json(), resolve({extensions: [".mjs", ".jsx", ".js"]}), babel()]
 		}
 	];
 };

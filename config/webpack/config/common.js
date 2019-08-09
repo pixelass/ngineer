@@ -67,13 +67,21 @@ module.exports = (env, argv) => {
 			publicPath: "/"
 		},
 		resolve: {
-			extensions: [".ts", ".tsx", ".js", ".jsx"],
+			extensions: [".ts", ".tsx", ".mjs", ".js", ".jsx"],
 			alias: {
 				"react-dom": "@hot-loader/react-dom"
 			}
 		},
 		module: {
 			rules: [
+				{
+					test: /\.mjs$/,
+					use: [
+						{
+							loader: "babel-loader"
+						}
+					]
+				},
 				{
 					test: /\.jsx?$/,
 					use: [

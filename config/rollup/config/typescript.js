@@ -1,10 +1,12 @@
 const path = require("path");
 const babel = require("rollup-plugin-babel");
 const json = require("rollup-plugin-json");
+const commonjs = require("rollup-plugin-commonjs");
 const typescript = require("rollup-plugin-typescript2");
 const createBanner = require("../utils/banner");
 
 const getPlugins = tsconfig => [
+	commonjs(),
 	json(),
 	babel(),
 	typescript({

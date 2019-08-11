@@ -1,6 +1,7 @@
 const path = require("path");
 const babel = require("rollup-plugin-babel");
 const json = require("rollup-plugin-json");
+const commonjs = require("rollup-plugin-commonjs");
 const resolve = require("rollup-plugin-resolve2");
 const banner = require("../utils/banner");
 
@@ -26,7 +27,7 @@ module.exports = () => {
 					format: "esm"
 				}
 			],
-			plugins: [json(), resolve({extensions: [".mjs", ".jsx", ".js"]}), babel()]
+			plugins: [commonjs(), json(), resolve({extensions: [".mjs", ".jsx", ".js"]}), babel()]
 		}
 	];
 };

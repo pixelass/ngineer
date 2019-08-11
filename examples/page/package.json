@@ -7,7 +7,6 @@
   "license": "MIT",
   "author": "Gregor Adams <greg@pixelass.com> (https://pixelass.com)",
   "scripts": {
-    "build:x": "concurrently 'yarn json-server' 'ngineer build -p' -k",
     "build": "node build.js",
     "clean": "ngineer clean",
     "dev": "concurrently 'yarn json-server' 'ngineer -w' 'ngineer dev-server'",

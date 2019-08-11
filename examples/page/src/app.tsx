@@ -4,20 +4,26 @@ import React from "react";
 import {hot} from "react-hot-loader/root";
 import {Route, Switch} from "react-router";
 import {ThemeProvider} from "styled-components";
+import db from "../db.json";
 import {Sidebar} from "./components/sidebar";
 import {NotFound} from "./pages";
 import {routes} from "./routes";
 import GlobalStyle from "./style";
 import theme from "./theme";
 
-const host = process.env.NODE_ENV === "production" ? "http://localhost:1337" : "https://localhost:3000/api";
-export const graphQL = new GraphQL({
-	root: {
+const host = "https://localhost:3000/api";
+const root = process.env.NODE_ENV === "production" ?
+	{
+		entries: () =>  db.entries,
+		items: () =>  db.items,
+		simpsons: () =>  db.simpsons
+	} : {
 		entries: () => fetchJSON(`${host}/entries`),
 		items: () => fetchJSON(`${host}/items`),
 		simpsons: () => fetchJSON(`${host}/simpsons`)
-	},
-	schema: buildSchema(`
+	};
+
+const schema = buildSchema(`
 		type Entry {
 			id: String!
 			label: String!
@@ -35,7 +41,11 @@ export const graphQL = new GraphQL({
 			items: [Item]!
 			simpsons: [Simpson]!
 		}
-	`)
+	`);
+
+export const graphQL = new GraphQL({
+	root,
+	schema
 });
 
 interface AppProps {
@@ -53,7 +63,7 @@ const withQuery = ({Page, query, data, name}) =>
 
 const AppImpl = ({data = {}}: AppProps) => {
 	return (
-		<Provider graphql={graphQL}>
+		<Provider graphQL={graphQL} prefetch>
 			<ThemeProvider theme={theme}>
 				<React.Fragment>
 					<GlobalStyle />

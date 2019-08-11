@@ -8,7 +8,7 @@ import {ServerStyleSheet, StyleSheetManager} from "styled-components";
 import {App, graphQL} from "../app";
 import {routes} from "../routes";
 import {Document} from "./template";
-
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 const routeMap = routes.reduce(
 	(previousValue, {location, name}) => ({...previousValue, [location]: name}),
 	{"*": "notFound"}

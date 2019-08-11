@@ -32,6 +32,7 @@ export interface QueryProps {
 	cache?: {
 		data?: any;
 	};
+	prefetch?: boolean;
 	children?: (response: any) => React.ReactNode;
 	render?: (response: any) => React.ReactNode;
 }
@@ -40,10 +41,22 @@ export interface QueryState {
 	loading?: boolean;
 }
 
-export const {Provider: GraphQLProvider, Consumer: GraphQLConsumer} = React.createContext({});
+export interface GraphQLContext {
+	graphQL?: GraphQL;
+	prefetch?: boolean;
+}
 
-export const Provider = ({graphql, children}) => (
-	<GraphQLProvider value={graphql}>
+export const {Provider: GraphQLProvider, Consumer: GraphQLConsumer} = React.createContext<
+	GraphQLContext
+>({});
+
+export interface ProviderProps {
+	children?: React.ReactNode | React.ReactNode[];
+	graphQL: GraphQL;
+	prefetch?: boolean;
+}
+export const Provider: React.FunctionComponent<ProviderProps> = ({children, graphQL, prefetch}) => (
+	<GraphQLProvider value={{graphQL, prefetch}}>
 		<ReduxProvider store={store}>{children}</ReduxProvider>
 	</GraphQLProvider>
 );
@@ -52,16 +65,16 @@ export class QueryBase extends React.Component<QueryProps & {graphQL: GraphQL}, 
 	public state: Readonly<QueryState> = {};
 	public constructor(props) {
 		super(props);
-		if (!this.exists) {
+		if (!this.exists && this.props.prefetch) {
 			this.props.graphQL.add(this.props.name, this.props.query);
 		}
 	}
 
 	public componentDidMount() {
-		this.fetch();
+		this.fetch(!this.exists && !this.props.prefetch);
 	}
 
-	public componentDidUpdate({query}, prevState) {
+	public componentDidUpdate({query}) {
 		if (query !== this.props.query) {
 			this.fetch(true);
 		}
@@ -81,8 +94,8 @@ export class QueryBase extends React.Component<QueryProps & {graphQL: GraphQL}, 
 	}
 
 	private fetch = (force?) => {
-		this.setState({loading: true}, () => {
-			if (!this.exists || force) {
+		if (force) {
+			this.setState({loading: true}, () => {
 				this.props.graphQL
 					.get(this.props.query)
 					.then(({data}) => {
@@ -90,14 +103,21 @@ export class QueryBase extends React.Component<QueryProps & {graphQL: GraphQL}, 
 						this.setState({loading: false});
 					})
 					.catch(this.props.onError);
-			}
-		});
+			});
+		} else if (!this.exists) {
+			this.setState({loading: true}, () => {
+				this.props.graphQL.read(this.props.name).then(({data}) => {
+					this.props.save({[this.props.name]: data});
+					this.setState({loading: false});
+				});
+			});
+		}
 	};
 }
 
 export const QueryImpl = (props: QueryProps) => (
 	<GraphQLConsumer>
-		{(graphQL: GraphQL) => <QueryBase graphQL={graphQL} {...props} />}
+		{({graphQL, prefetch}) => <QueryBase graphQL={graphQL} prefetch={prefetch} {...props} />}
 	</GraphQLConsumer>
 );
 

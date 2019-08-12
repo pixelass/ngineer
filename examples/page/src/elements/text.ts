@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const Text =  styled.p<{size?: "small" | "normal" | "large"}>`
+export const Text = styled.p<{size?: "small" | "normal" | "large"}>`
 	padding: 1rem 0;
 	margin: 0 auto;
 	font-weight: normal;

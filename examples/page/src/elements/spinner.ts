@@ -19,7 +19,7 @@ const Circle = styled.path.attrs({
 	animation: ${spin} 0.5s linear infinite;
 `;
 
-export const Spinner =  styled.svg.attrs({
+export const Spinner = styled.svg.attrs({
 	children: React.createElement(Circle),
 	viewBox: "0 0 24 24"
 })`

@@ -1,5 +1,5 @@
 import React from "react";
-import { Example, Home, NotFound } from "./pages";
+import {Example, Home, NotFound} from "./pages";
 
 export interface Route {
 	component: {

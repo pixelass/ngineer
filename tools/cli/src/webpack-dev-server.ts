@@ -25,10 +25,6 @@ export default () => {
 	const server = new WebpackDevServer(compiler, devServerOptions);
 	server.listen(port, host, () => {
 		// tslint:disable-next-line:no-console
-		console.info(
-			`Starting server on ${protocol}//${
-				host
-			}:${port}`
-		);
+		console.info(`Starting server on ${protocol}//${host}:${port}`);
 	});
 };

@@ -1,3 +1,3 @@
 module.exports = {
-	"extends": "@ngineer/config-babel/ts-react"
+	extends: "@ngineer/config-babel/ts-react"
 };

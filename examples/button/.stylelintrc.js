@@ -1,3 +1,3 @@
 module.exports = {
-	"extends": "@ngineer/config-stylelint/styled-components"
+	extends: "@ngineer/config-stylelint/styled-components"
 };

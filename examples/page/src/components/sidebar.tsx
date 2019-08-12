@@ -24,7 +24,7 @@ const Panel = styled.div<PanelProps>`
 		transform: ${isOpen ? "translate3d(0,0,0)" : "translate3d(-100%,0,0)"};
 		visibility: ${isOpen ? "visible" : "hidden"};
 	`};
-	
+
 	@media (min-width: 78rem) {
 		position: sticky;
 		transform: none;

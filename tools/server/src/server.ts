@@ -147,7 +147,10 @@ export class Server {
 		const keys = await createCertificate();
 		return new Promise(resolve => {
 			https
-				.createServer({key: keys.serviceKey, cert: keys.certificate, ca: keys.certificate}, this.app)
+				.createServer(
+					{key: keys.serviceKey, cert: keys.certificate, ca: keys.certificate},
+					this.app
+				)
 				.listen(port, () => {
 					resolve(port);
 				});

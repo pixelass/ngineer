@@ -17,10 +17,7 @@ const StyledButton = styled.button<ButtonProps>`
 	cursor: pointer;
 
 	&:hover {
-		background-image: linear-gradient(
-			hsla(0, 0%, 0%, 0.2),
-			hsla(0, 0%, 0%, 0.2)
-		);
+		background-image: linear-gradient(hsla(0, 0%, 0%, 0.2), hsla(0, 0%, 0%, 0.2));
 	}
 	&:active {
 		color: hsla(0, 0%, 0%, 0.5);
@@ -30,10 +27,7 @@ const StyledButton = styled.button<ButtonProps>`
 		outline: 0;
 	}
 	&[disabled] {
-		background-image: linear-gradient(
-			hsla(0, 0%, 0%, 0.4),
-			hsla(0, 0%, 0%, 0.4)
-		);
+		background-image: linear-gradient(hsla(0, 0%, 0%, 0.4), hsla(0, 0%, 0%, 0.4));
 		color: hsla(0, 0%, 0%, 0.25);
 		cursor: default;
 	}
@@ -41,10 +35,7 @@ const StyledButton = styled.button<ButtonProps>`
 
 export const ButtonRow = styled.div`
 	display: grid;
-	grid-template-columns: repeat(
-		${props => React.Children.count(props.children)},
-		max-content
-	);
+	grid-template-columns: repeat(${props => React.Children.count(props.children)}, max-content);
 	grid-gap: 1rem;
 `;
 

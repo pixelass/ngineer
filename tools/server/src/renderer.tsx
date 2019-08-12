@@ -13,7 +13,7 @@ export const toHTML5 = (js: React.ReactElement): string => `<!doctype html>${toH
 export type Renderer = () => (
 	request: express.Request,
 	response: express.Response
-) => Promise<express.Response | string>
+) => Promise<express.Response | string>;
 
 const explorer = cosmiconfig("ngineer");
 const {config: ngineerCustomConfig} = explorer.searchSync();
@@ -40,5 +40,5 @@ export function serverRenderer() {
 			return response.send(html);
 		}
 		return html;
-	}
-};
+	};
+}

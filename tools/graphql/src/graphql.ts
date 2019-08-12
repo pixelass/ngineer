@@ -44,9 +44,12 @@ export class GraphQL {
 	public collect = async (): Promise<Data> => {
 		const resolved = await Promise.all(Object.values(this.data));
 		return Object.keys(this.data).reduce(
-			(previousValue, currentValue, currentIndex) => ({...previousValue, [currentValue]: resolved[currentIndex]}),
+			(previousValue, currentValue, currentIndex) => ({
+				...previousValue,
+				[currentValue]: resolved[currentIndex]
+			}),
 			{}
-		);;
+		);
 	};
 	get data(): Cache {
 		return this.cache;

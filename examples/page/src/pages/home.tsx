@@ -17,7 +17,7 @@ export const Page = ({data, loading}) => (
 		<Wrapper>
 			<Card>
 				<Headline>Hello Ngineer!</Headline>
-				{loading && <Spinner/>}
+				{loading && <Spinner />}
 				<ul>{data && data.items.map(item => <li key={item.id}>{item.label}</li>)}</ul>
 			</Card>
 		</Wrapper>

@@ -37,8 +37,7 @@ export const renderSSR = async (request: express.Request, response: express.Resp
 			scripts={`<script>window.${INITIAL_STATE_PROP} = ${JSON.stringify({
 				[name]: cache[name]
 			})}</script>`}
-			styles={styles}>
-		</Document>
+			styles={styles}></Document>
 	);
 	if (isServer) {
 		return response.send(html);

@@ -14,4 +14,4 @@ module.exports = (port, callback) => {
 		console.log("JSON Server is running");
 		callback(server);
 	});
-}
+};

@@ -13,7 +13,7 @@ export const Document = (props: any) => (
 			{Parser(props.styles)}
 		</head>
 		<body>
-			<div data-app-root="" dangerouslySetInnerHTML={{__html: props.app}}/>
+			<div data-app-root="" dangerouslySetInnerHTML={{__html: props.app}} />
 			{props.isServer && <script src="/main.js" />}
 		</body>
 	</html>

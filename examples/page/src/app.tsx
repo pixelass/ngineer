@@ -12,16 +12,18 @@ import GlobalStyle from "./style";
 import theme from "./theme";
 
 const host = "https://localhost:3000/api";
-const root = process.env.NODE_ENV === "production" ?
-	{
-		entries: () =>  db.entries,
-		items: () =>  db.items,
-		simpsons: () =>  db.simpsons
-	} : {
-		entries: () => fetchJSON(`${host}/entries`),
-		items: () => fetchJSON(`${host}/items`),
-		simpsons: () => fetchJSON(`${host}/simpsons`)
-	};
+const root =
+	process.env.NODE_ENV === "production"
+		? {
+				entries: () => db.entries,
+				items: () => db.items,
+				simpsons: () => db.simpsons
+		  }
+		: {
+				entries: () => fetchJSON(`${host}/entries`),
+				items: () => fetchJSON(`${host}/items`),
+				simpsons: () => fetchJSON(`${host}/simpsons`)
+		  };
 
 const schema = buildSchema(`
 		type Entry {
@@ -54,10 +56,10 @@ interface AppProps {
 
 const withQuery = ({Page, query, data, name}) =>
 	data || !query ? (
-		<Page data={data}/>
+		<Page data={data} />
 	) : (
 		<Query query={query} name={name}>
-			{response => <Page {...response}/>}
+			{response => <Page {...response} />}
 		</Query>
 	);
 

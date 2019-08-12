@@ -31,7 +31,7 @@
     "dev": "concurrently 'yarn watch' 'yarn dev:parallel'",
     "dev:examples": "concurrently 'yarn watch --ignore @ngineer/*' 'yarn dev:parallel'",
     "dev:parallel": "lerna run dev --parallel",
-    "format": "prettier '*.js' '**/*.{md,js,jsx,json,ts,tsx}' '!examples/**/*' '!**/{lib,dist}/**/*' --write",
+    "format": "prettier '*.js' '**/*.{md,js,jsx,json,ts,tsx}' '!**/CHANGELOG.md' '!examples/**/*' '!**/{lib,dist}/**/*' --write",
     "lint": "lerna run lint --parallel",
     "ncu": "ncu -u; lerna exec 'ncu -u'",
     "prebuild": "yarn build:cli && yarn build:packages",
@@ -47,13 +47,18 @@
     "concurrently": "4.1.1",
     "husky": "3.0.3",
     "lerna": "3.16.4",
+    "lint-staged": "^9.2.1",
     "npm-check-updates": "3.1.20",
     "prettier": "1.18.2"
   },
   "husky": {
     "hooks": {
+      "pre-commit": "lint-staged",
       "pre-push": "yarn test",
       "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
     }
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": ["prettier --write", "git add"]
   }
 }

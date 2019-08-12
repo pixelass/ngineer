@@ -4,5 +4,6 @@ module.exports = {
 	api: {
 		path: "/api",
 		target: "http://localhost:1337"
-	}
+	},
+	plugins: ["styled-components", "graphql"]
 };

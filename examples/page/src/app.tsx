@@ -11,21 +11,20 @@ import {routes} from "./routes";
 import GlobalStyle from "./style";
 import theme from "./theme";
 
-const host = "https://localhost:3000/api";
-const root =
-	process.env.NODE_ENV === "production"
-		? {
-				entries: () => db.entries,
-				items: () => db.items,
-				simpsons: () => db.simpsons
-		  }
-		: {
-				entries: () => fetchJSON(`${host}/entries`),
-				items: () => fetchJSON(`${host}/items`),
-				simpsons: () => fetchJSON(`${host}/simpsons`)
-		  };
 
-const schema = buildSchema(`
+export const host = "https://localhost:3000/api";
+export const root = process.env.NODE_ENV === "production" ?
+	{
+		entries: () =>  db.entries,
+		items: () =>  db.items,
+		simpsons: () =>  db.simpsons
+	} : {
+		entries: () => fetchJSON(`${host}/entries`),
+		items: () => fetchJSON(`${host}/items`),
+		simpsons: () => fetchJSON(`${host}/simpsons`)
+	};
+
+export const schema = buildSchema(`
 		type Entry {
 			id: String!
 			label: String!
@@ -50,11 +49,11 @@ export const graphQL = new GraphQL({
 	schema
 });
 
-interface AppProps {
+export interface AppProps {
 	data?: any;
 }
 
-const withQuery = ({Page, query, data, name}) =>
+export const withQuery = ({Page, query, data, name}) =>
 	data || !query ? (
 		<Page data={data} />
 	) : (
@@ -63,7 +62,7 @@ const withQuery = ({Page, query, data, name}) =>
 		</Query>
 	);
 
-const AppImpl = ({data = {}}: AppProps) => {
+export const AppImpl = ({data = {}}: AppProps) => {
 	return (
 		<Provider graphQL={graphQL} prefetch>
 			<ThemeProvider theme={theme}>

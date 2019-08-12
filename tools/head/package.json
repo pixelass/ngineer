@@ -22,7 +22,6 @@
     "format": "ngineer format 'src/**/*.{ts,tsx}' '**/*.md'",
     "lint": "ngineer lint 'src/**/*.{ts,tsx}'",
     "prebuild": "yarn clean",
-    "test": "ngineer test",
     "watch": "ngineer -rw"
   },
   "browserslist": [

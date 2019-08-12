@@ -6,5 +6,6 @@ module.exports = {
 	lib: "lib",
 	public: "public",
 	routes: "routes",
-	src: "src"
+	src: "src",
+	plugins: []
 };

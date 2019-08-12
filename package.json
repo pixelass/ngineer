@@ -17,7 +17,7 @@
   "workspaces": [
     "config/*",
     "examples/*",
-    "packages/*",
+    "plugins/*",
     "tools/*"
   ],
   "scripts": {

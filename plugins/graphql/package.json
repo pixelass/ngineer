@@ -1,0 +1,27 @@
+{
+  "name": "@ngineer/plugin-graphql",
+  "version": "1.1.0",
+  "description": "ngineer plugin for graphql",
+  "homepage": "https://pixelass.github.io/ngineer",
+  "bugs": {
+    "url": "https://github.com/pixelass/ngineer/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pixelass/ngineer.git"
+  },
+  "license": "MIT",
+  "author": "Gregor Adams <greg@pixelass.com>",
+  "files": [
+    "index.js"
+  ],
+  "main": "index.js",
+  "dependencies": {},
+  "engines": {
+    "node": ">=8",
+    "npm": ">=6"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
